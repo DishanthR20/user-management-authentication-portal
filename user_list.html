@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Dashboard</title>
+<style>
+
+body{
+            min-height:100vh;
+            background:violet
+        }
+
+    .container{
+        width: 95%;
+        margin: auto;
+    }
+
+    h2{
+        text-align: center;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .add-btn{
+        display: inline-block;
+        background-color: #0d6efd;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+    }
+
+    table{
+        width: 100%;
+        border-collapse: collapse;
+        background-color: white;
+    }
+
+    table, th, td{
+        border: 1px solid #ddd;
+    }
+
+    th{
+        background-color: blueviolet;
+        color: white;
+        padding: 12px;
+    }
+
+    td{
+        padding: 10px;
+        text-align: center;
+    }
+
+    .img{
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    .delete-btn{
+        background-color: #dc3545;
+        color: white;
+        padding: 8px 12px;
+        border-radius: 5px;
+    }
+
+    .update-btn{
+        background-color: #198754;
+        color: white;
+        padding: 8px 12px;
+        border-radius: 5px;
+    }
+
+    a, u {
+  text-decoration: none;
+}
+
+</style>
+</head>
+<body>
+<div class="container">
+<h2>User Management Dashboard</h2>
+
+<a href="/admin-panel/add-user/" class="add-btn">Add New User</a>
+<br><br>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>Phone</th>
+        <th>DOB</th>
+        <th>Course</th>
+        <th>Interests</th>
+        <th>Profile</th>
+        <th>Password</th>
+        <th>Token</th>
+        <th>Action</th>
+    </tr>
+
+    {% for user in users %}
+    <tr>
+
+        <td>{{ user.id }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.age }}</td>
+        <td>{{ user.gender }}</td>
+        <td>{{ user.phone_num }}</td>
+        <td>{{ user.dob }}</td>
+        <td>{{ user.course }}</td>
+        <td>{{ user.interests }}</td>
+
+        <td>
+            {% if user.pfpic %}
+                <img class="img" src="{{ user.pfpic.url }}">
+            {% endif %}
+        </td>
+
+        <td>{{ user.password }}</td>
+        <td>{{ user.verification_token }}</td>
+
+        <td>
+
+                <a href="{% url 'delete_user' user.id %}" class="delete-btn">Delete</a>
+                <br><br>
+                <a href="{% url 'update_user' user.id %}" class="update-btn">Update</a>
+                <br><br>
+                <form action="{% url 'user_qr' user.id %}" method="GET">
+                    <button type="submit" class="delete-btn">Generate QR</button>
+                </form>
+
+        </td>
+
+    </tr>
+    {% endfor %}
+
+</table>
+
+</div>
+<br><br><br>
+
+{% if img %}
+
+<hr>
+
+<h2>Generated QR</h2>
+
+<div style="text-align:center;">
+    <img src="/media/qr/{{ img }}" width="300">
+</div>
+
+{% endif %}
+<br><br><br>
+<a href="{% url 'admin_logout' %}" style="background:red;color:white;padding:10px;border-radius:5px;text-decoration:none;">Logout</a>
+<br><br><br>
+
+</body>
+</html>

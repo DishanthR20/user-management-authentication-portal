@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add User</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background:violet
+        }
+
+        .container{
+            width:900px;
+            background:white;
+            padding:40px;
+            border-radius:12px;
+            box-shadow:0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        h2{
+            text-align: center;
+            margin-bottom:30px;
+            color: black;
+        }
+
+        .row{
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:25px;
+        }
+
+        .field{
+            margin-bottom:20px;
+        }
+
+        label{
+            display:block;
+            margin-bottom:8px;
+            font-weight:bold;
+            color:#444;
+        }
+
+        input,
+        select{
+            width:100%;
+            padding:12px;
+            border:1px solid #ddd;
+            border-radius:6px;
+            font-size:15px;
+        }
+
+        input:focus,
+        select:focus{
+            outline:none;
+            border-color:#6c63ff;
+        }
+
+        .radio-group{
+            display:flex;
+            gap:40px;
+            margin-top:10px;
+        }
+
+        .radio-group label{
+            font-weight:normal;
+        }
+
+        .submit-btn{
+            width:100%;
+            margin-top:30px;
+            border:none;
+            padding:15px;
+            border-radius:6px;
+            font-size:18px;
+            color:white;
+            cursor:pointer;
+
+            background:blueviolet;
+        }
+
+        .submit-btn:hover{
+            opacity:.9;
+        }
+
+        .alert{
+    background:#ffe5e5;
+    color:#d63031;
+    padding:12px;
+    border-left:5px solid #d63031;
+    border-radius:6px;
+    margin-bottom:20px;
+    font-weight:600;
+}
+
+input[type="radio"],
+input[type="checkbox"]{
+    width:auto;
+    margin-right:8px;
+}
+
+ul{
+    list-style:none;
+    padding-left:0;
+}
+
+    </style>
+
+</head>
+<body>
+
+    {% if messages %}
+    {% for message in messages %}
+        <div class="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+<div class="container">
+
+    <h2>Add User</h2>
+
+
+    <form method="POST" enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+        <div class="row">
+
+            <div class="field">
+                <label>Name</label>
+                {{ form.name }}
+            </div>
+
+            <div class="field">
+                <label>Age</label>
+                {{ form.age }}
+            </div>
+
+            <div class="field">
+                <label>Email</label>
+                {{ form.email }}
+            </div>
+
+            <div class="field">
+                <label>Phone Number</label>
+                {{ form.phone_num }}
+            </div>
+
+            <div class="field">
+                <label>Date Of Birth</label>
+                {{ form.dob }}
+            </div>
+
+            <div class="field">
+                <label>Profile Picture</label>
+                {{ form.pfpic }}
+            </div>
+
+        </div>
+
+        <div class="field">
+            <label>Gender</label>
+            {{ form.gender }}
+        </div>
+
+        <hr>
+<br>
+        <div class="field">
+            <label>Course</label>
+            {{ form.course }}
+        </div>
+
+        <br>
+        <hr>
+<br>
+        <div class="field">
+            <label>Interests</label>
+            {{ form.interests }}
+        </div>
+
+        <br>
+        <hr>
+        <br>
+
+        <button type="submit" class="submit-btn">
+        Add user
+        </button>
+
+        <br><br>
+
+    </form>
+
+</div>
+
+</body>
+</html>
