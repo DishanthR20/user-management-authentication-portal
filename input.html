@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            background:violet
+        }
+
+        .container{
+            width:900px;
+            background:white;
+            padding:40px;
+            border-radius:12px;
+            box-shadow:0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        h2{
+            text-align: center;
+            margin-bottom:30px;
+            color: black;
+        }
+
+        .row{
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:25px;
+        }
+
+        .field{
+            margin-bottom:20px;
+        }
+
+        label{
+            display:block;
+            margin-bottom:8px;
+            font-weight:bold;
+            color:#444;
+        }
+
+        input,
+        select{
+            width:100%;
+            padding:12px;
+            border:1px solid #ddd;
+            border-radius:6px;
+            font-size:15px;
+        }
+
+        input:focus,
+        select:focus{
+            outline:none;
+            border-color:#6c63ff;
+        }
+
+        .radio-group{
+            display:flex;
+            gap:40px;
+            margin-top:10px;
+        }
+
+        .radio-group label{
+            font-weight:normal;
+        }
+
+        .submit-btn{
+            width:100%;
+            margin-top:30px;
+            border:none;
+            padding:15px;
+            border-radius:6px;
+            font-size:18px;
+            color:white;
+            cursor:pointer;
+
+            background:blueviolet;
+        }
+
+        .submit-btn:hover{
+            opacity:.9;
+        }
+
+        .alert{
+    background:#ffe5e5;
+    color:#d63031;
+    padding:12px;
+    border-left:5px solid #d63031;
+    border-radius:6px;
+    margin-bottom:20px;
+    font-weight:600;
+}
+
+input[type="radio"],
+input[type="checkbox"]{
+    width:auto;
+    margin-right:8px;
+}
+
+ul{
+    list-style:none;
+    padding-left:0;
+}
+
+    </style>
+
+</head>
+<body>
+
+    {% if messages %}
+    {% for message in messages %}
+        <div class="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+
+<div class="container">
+
+    <h2>Registration</h2>
+
+
+    <form method="POST" enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+        <div class="row">
+
+            <div class="field">
+                <label>Name</label>
+                {{ forms.name }}
+            </div>
+
+            <div class="field">
+                <label>Age</label>
+                {{ forms.age }}
+            </div>
+
+            <div class="field">
+                <label>Email</label>
+                {{ forms.email }}
+            </div>
+
+            <div class="field">
+                <label>Phone Number</label>
+                {{ forms.phone_num }}
+            </div>
+
+            <div class="field">
+                <label>Date Of Birth</label>
+                {{ forms.dob }}
+            </div>
+
+            <div class="field">
+                <label>Profile Picture</label>
+                {{ forms.pfpic }}
+            </div>
+
+        </div>
+
+        <div class="field">
+            <label>Gender</label>
+            {{ forms.gender }}
+        </div>
+
+        <hr>
+<br>
+        <div class="field">
+            <label>Course</label>
+            {{ forms.course }}
+        </div>
+
+        <br>
+        <hr>
+<br>
+        <div class="field">
+            <label>Interests</label>
+            {{ forms.interests }}
+        </div>
+
+        <br>
+        <hr>
+        <br>
+
+        <button type="submit" class="submit-btn">
+            Register
+        </button>
+
+        <br><br>
+
+    </form>
+
+</div>
+
+</body>
+</html>

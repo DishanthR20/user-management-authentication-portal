@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>QR Options</title>
+
+<style>
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:violet;
+    font-family:Arial,sans-serif;
+}
+
+.container{
+    width:600px;
+    background:white;
+    padding:50px;
+    border-radius:12px;
+    text-align:center;
+}
+
+h2{
+    margin-bottom:40px;
+}
+
+.btn{
+    display:block;
+    width:100%;
+    padding:18px;
+    margin:20px 0;
+    background:blueviolet;
+    color:white;
+    text-decoration:none;
+    border-radius:8px;
+    font-size:20px;
+}
+
+</style>
+</head>
+
+<body>
+<div class="container">
+    <h2>Select QR Type</h2>
+    <a href="{% url 'qr_generator' %}" class="btn">Text QR</a>
+    <a href="{% url 'url_qr' %}" class="btn">URL QR</a>
+</div>
+
+</body>
+</html>

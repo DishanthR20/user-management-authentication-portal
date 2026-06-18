@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>URL QR Generator</title>
+
+<style>
+
+body{
+    background:violet;
+    font-family:Arial,sans-serif;
+}
+
+.container{
+    width:800px;
+    margin:50px auto;
+    background:white;
+    padding:40px;
+    border-radius:12px;
+}
+
+input{
+    width:100%;
+    padding:15px;
+}
+
+button{
+    width:100%;
+    padding:15px;
+    margin-top:20px;
+    border:none;
+    background:blueviolet;
+    color:white;
+    font-size:18px;
+}
+
+.qr{
+    text-align:center;
+    margin-top:30px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>URL QR Generator</h2>
+
+<form method="POST">
+
+{% csrf_token %}
+
+<label>Enter URL</label>
+
+<input type="url" name="url" placeholder="Enter a URL" required>
+
+<button type="submit">Generate QR</button>
+
+</form>
+
+{% if img %}
+
+<div class="qr">
+
+<h3>Generated QR</h3>
+
+<img src="/media/qr_codes/{{ img }}" width="300">
+
+</div>
+
+{% endif %}
+
+</div>
+
+</body>
+</html>
